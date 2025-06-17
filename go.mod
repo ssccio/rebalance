@@ -1,5 +1,4 @@
 module github.com/ssccio/rebalance
-module github.com/ssccio/rebalance
 
 go 1.21
 
