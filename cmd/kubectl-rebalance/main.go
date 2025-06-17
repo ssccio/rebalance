@@ -12,14 +12,14 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/clientcmd"
 	"k8s.io/metrics/pkg/client/clientset/versioned"
-	
+
 	// Import all auth plugins (for cloud providers)
 	_ "k8s.io/client-go/plugin/pkg/client/auth"
 )
 
 var (
 	config rebalancer.Config
-	
+
 	// Version information (set by goreleaser)
 	version = "dev"
 	commit  = "none"
@@ -34,8 +34,8 @@ func main() {
 	}
 
 	rootCmd := &cobra.Command{
-		Use:   use,
-		Short: "Rebalance pods from overloaded nodes",
+		Use:     use,
+		Short:   "Rebalance pods from overloaded nodes",
 		Version: version,
 		Long: `A kubectl plugin to evict pods from heavily loaded nodes,
 allowing them to be rescheduled on less loaded nodes.

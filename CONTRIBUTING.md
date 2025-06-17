@@ -22,6 +22,22 @@ Thank you for your interest in contributing to kubectl-rebalance! This document 
 - Go 1.21 or later
 - kubectl
 - Access to a Kubernetes cluster (minikube, kind, etc.)
+- pre-commit (optional but recommended)
+
+### Setting up pre-commit
+
+We use pre-commit to catch issues before they reach CI:
+
+```bash
+# Install pre-commit
+pip install pre-commit
+
+# Install the git hook scripts
+pre-commit install
+
+# Run against all files (first time)
+pre-commit run --all-files
+```
 
 ### Building
 

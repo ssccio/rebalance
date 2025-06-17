@@ -29,7 +29,7 @@ func (ps *PodSelector) SelectPods(ctx context.Context, nodes []NodeInfo, selecto
 	}
 
 	selectedPods := make([]corev1.Pod, 0, count)
-	
+
 	// Iterate through nodes and collect matching pods
 	for _, node := range nodes {
 		if len(selectedPods) >= count {
@@ -40,7 +40,7 @@ func (ps *PodSelector) SelectPods(ctx context.Context, nodes []NodeInfo, selecto
 		listOptions := metav1.ListOptions{
 			FieldSelector: fmt.Sprintf("spec.nodeName=%s", node.Name),
 		}
-		
+
 		if namespace != "" {
 			pods, err := ps.k8sClient.CoreV1().Pods(namespace).List(ctx, listOptions)
 			if err != nil {
@@ -63,21 +63,22 @@ func (ps *PodSelector) SelectPods(ctx context.Context, nodes []NodeInfo, selecto
 // filterPods filters pods based on label selector and returns up to maxCount pods
 func (ps *PodSelector) filterPods(pods []corev1.Pod, selector labels.Selector, maxCount int) []corev1.Pod {
 	filtered := make([]corev1.Pod, 0, maxCount)
-	
+
 	for _, pod := range pods {
 		if len(filtered) >= maxCount {
 			break
 		}
-		
+
 		// Skip pods that are not running or are being deleted
 		if pod.Status.Phase != corev1.PodRunning || pod.DeletionTimestamp != nil {
 			continue
 		}
-		
+
 		// Check if pod matches selector
-		if selector.Matches(labels.Set(pod.Labels)) {			filtered = append(filtered, pod)
+		if selector.Matches(labels.Set(pod.Labels)) {
+			filtered = append(filtered, pod)
 		}
 	}
-	
+
 	return filtered
 }

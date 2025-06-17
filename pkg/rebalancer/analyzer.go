@@ -25,6 +25,7 @@ type NodeAnalyzer struct {
 	k8sClient     kubernetes.Interface
 	metricsClient versioned.Interface
 }
+
 // NewNodeAnalyzer creates a new NodeAnalyzer
 func NewNodeAnalyzer(k8sClient kubernetes.Interface, metricsClient versioned.Interface) *NodeAnalyzer {
 	return &NodeAnalyzer{
@@ -74,7 +75,7 @@ func (na *NodeAnalyzer) GetOverloadedNodes(ctx context.Context, count int, thres
 		}
 
 		info := NodeInfo{Name: node.Name}
-		
+
 		// Calculate CPU percentage
 		cpuCapacity := node.Status.Allocatable[corev1.ResourceCPU]
 		cpuUsage := metrics.Usage[corev1.ResourceCPU]
@@ -127,7 +128,7 @@ func isNodeReady(node *corev1.Node) bool {
 // getOverloadedNodesByPodCount returns nodes sorted by pod count
 func (na *NodeAnalyzer) getOverloadedNodesByPodCount(ctx context.Context, nodes []corev1.Node, count int) ([]NodeInfo, error) {
 	nodeInfos := make([]NodeInfo, 0, len(nodes))
-	
+
 	for _, node := range nodes {
 		// Skip nodes that are not ready
 		if !isNodeReady(&node) {
@@ -153,11 +154,11 @@ func (na *NodeAnalyzer) getOverloadedNodesByPodCount(ctx context.Context, nodes 
 
 		info := NodeInfo{
 			Name:          node.Name,
-			CPUPercent:    0,    // Not available without metrics
-			MemoryPercent: 0,    // Not available without metrics
+			CPUPercent:    0,                    // Not available without metrics
+			MemoryPercent: 0,                    // Not available without metrics
 			Score:         float64(runningPods), // Use pod count as score
 		}
-		
+
 		nodeInfos = append(nodeInfos, info)
 	}
 

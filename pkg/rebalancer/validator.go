@@ -21,12 +21,12 @@ func NewValidator(k8sClient kubernetes.Interface) *Validator {
 func (v *Validator) Validate(pods []corev1.Pod, config Config) error {
 	// Check if we found enough pods
 	if len(pods) < config.Count {
-		return fmt.Errorf("requested %d pods but only found %d matching pods on the most loaded nodes", 
+		return fmt.Errorf("requested %d pods but only found %d matching pods on the most loaded nodes",
 			config.Count, len(pods))
 	}
 	// Check minimum pods threshold
 	if config.MinPods > 0 && len(pods) < config.MinPods {
-		return fmt.Errorf("minimum threshold not met: required %d pods matching selector, but only found %d", 
+		return fmt.Errorf("minimum threshold not met: required %d pods matching selector, but only found %d",
 			config.MinPods, len(pods))
 	}
 

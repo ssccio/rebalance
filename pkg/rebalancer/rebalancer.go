@@ -23,11 +23,11 @@ type Rebalancer struct {
 func New(k8sClient kubernetes.Interface, metricsClient versioned.Interface, config Config) *Rebalancer {
 	return &Rebalancer{
 		k8sClient:     k8sClient,
-		metricsClient: metricsClient,		config:        config,
-		analyzer:      NewNodeAnalyzer(k8sClient, metricsClient),
-		selector:      NewPodSelector(k8sClient),
-		validator:     NewValidator(k8sClient),
-		evictor:       NewEvictor(k8sClient),
+		metricsClient: metricsClient, config: config,
+		analyzer:  NewNodeAnalyzer(k8sClient, metricsClient),
+		selector:  NewPodSelector(k8sClient),
+		validator: NewValidator(k8sClient),
+		evictor:   NewEvictor(k8sClient),
 	}
 }
 
@@ -52,7 +52,7 @@ func (r *Rebalancer) Execute() error {
 		if r.config.MetricType == "pod-count" {
 			fmt.Printf("  - %s (Pods: %d)\n", node.Name, int(node.Score))
 		} else {
-			fmt.Printf("  - %s (CPU: %.1f%%, Memory: %.1f%%)\n", 
+			fmt.Printf("  - %s (CPU: %.1f%%, Memory: %.1f%%)\n",
 				node.Name, node.CPUPercent, node.MemoryPercent)
 		}
 	}
@@ -74,7 +74,8 @@ func (r *Rebalancer) Execute() error {
 	// Step 4: Show what will be done (dry-run or execute)
 	if r.config.DryRun {
 		fmt.Println("\nDRY-RUN MODE - Would evict the following pods:")
-		for i, pod := range pods {			fmt.Printf("  %d. %s/%s (node: %s)\n", i+1, pod.Namespace, pod.Name, pod.Spec.NodeName)
+		for i, pod := range pods {
+			fmt.Printf("  %d. %s/%s (node: %s)\n", i+1, pod.Namespace, pod.Name, pod.Spec.NodeName)
 		}
 		return nil
 	}

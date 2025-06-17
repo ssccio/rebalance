@@ -23,8 +23,9 @@ func NewEvictor(k8sClient kubernetes.Interface) *Evictor {
 
 // EvictPods evicts the given pods with the specified interval between evictions
 func (e *Evictor) EvictPods(ctx context.Context, pods []corev1.Pod, interval time.Duration) error {
-	for i, pod := range pods {		fmt.Printf("Evicting pod %d/%d: %s/%s\n", i+1, len(pods), pod.Namespace, pod.Name)
-		
+	for i, pod := range pods {
+		fmt.Printf("Evicting pod %d/%d: %s/%s\n", i+1, len(pods), pod.Namespace, pod.Name)
+
 		eviction := &policyv1.Eviction{
 			ObjectMeta: metav1.ObjectMeta{
 				Name:      pod.Name,
