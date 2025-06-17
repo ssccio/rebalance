@@ -1,3 +1,5 @@
+// Package rebalancer provides functionality to rebalance pods across Kubernetes nodes
+// by evicting pods from overloaded nodes and allowing the scheduler to redistribute them.
 package rebalancer
 
 import (
