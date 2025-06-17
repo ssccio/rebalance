@@ -62,6 +62,9 @@ EXAMPLES:
 	if len(os.Args) == 1 {
 		rootCmd.SetArgs([]string{"--help"})
 	}
+
+	// Set custom version string
+	rootCmd.Version = fmt.Sprintf("%s (commit: %s, built: %s)", version, commit, date)
 	flags := rootCmd.Flags()
 	flags.IntVarP(&config.Count, "count", "c", 10, "Number of pods to evict")
 	flags.IntVar(&config.MinPods, "min-pods", 0, "Minimum pods required to proceed")
