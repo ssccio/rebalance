@@ -7,16 +7,17 @@ import (
 
 func TestConfig(t *testing.T) {
 	config := Config{
-		Count:        10,
-		MinPods:      5,
-		FromNodes:    3,
-		Threshold:    80.0,
-		Selector:     "app=test",
-		Namespace:    "default",
-		Interval:     10 * time.Second,
-		DryRun:       true,
-		MetricType:   "both",
-		OutputFormat: "table",
+		Count:         10,
+		MinPods:       5,
+		FromNodes:     3,
+		Threshold:     80.0,
+		Selector:      "app=test",
+		Namespace:     "default",
+		AllNamespaces: false,
+		Interval:      10 * time.Second,
+		DryRun:        true,
+		MetricType:    "both",
+		OutputFormat:  "table",
 	}
 
 	if config.Count != 10 {
