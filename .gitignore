@@ -4,7 +4,7 @@
 *.dll
 *.so
 *.dylib
-kubectl-rebalance
+/kubectl-rebalance
 
 # Test binary, built with `go test -c`
 *.test
