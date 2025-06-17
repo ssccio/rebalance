@@ -15,12 +15,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    
+
     - name: Generate TOC
       uses: technote-space/toc-generator@v4
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
+
     - name: Commit changes
       if: steps.toc.outputs.changed == 'true'
       run: |

@@ -8,9 +8,9 @@ spec:
   shortDescription: Rebalance pods across nodes by controlled eviction
   description: |
     This plugin evicts pods from heavily loaded nodes to trigger rescheduling
-    on less loaded nodes. It's particularly useful after node failures or 
+    on less loaded nodes. It's particularly useful after node failures or
     when nodes rejoin a cluster and the pod distribution becomes uneven.
-    
+
     The plugin can use CPU/memory metrics (requires metrics-server) or fall
     back to pod count for determining node load.
   caveats: |

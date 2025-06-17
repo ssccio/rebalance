@@ -50,7 +50,7 @@ jobs:
         os: [ubuntu-latest, macos-latest]
         go: ['1.21', '1.22']
     runs-on: ${{ matrix.os }}
-    
+
     steps:
     - uses: actions/checkout@v4
 
