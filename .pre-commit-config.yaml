@@ -17,6 +17,7 @@ repos:
     rev: v0.5.1
     hooks:
       - id: go-fmt
+        args: [-s]  # Add simplify flag
       - id: go-imports
       - id: go-mod-tidy
 
