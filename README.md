@@ -7,11 +7,6 @@
 
 A kubectl plugin to redistribute pods from overloaded Kubernetes nodes by intelligently evicting them for rescheduling on less loaded nodes. Perfect for rebalancing clusters after node failures or replacements.
 
-## Table of Contents
-
-<!-- START doctoc -->
-<!-- END doctoc -->
-
 ## Features
 
 - 🎯 **Targeted eviction** - Select pods by label selector
