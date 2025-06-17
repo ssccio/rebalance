@@ -6,7 +6,7 @@ VERSION=$(shell git describe --tags --always --dirty)
 LDFLAGS=-ldflags "-X main.version=$(VERSION)"
 
 build:
-	go build $(LDFLAGS) -o $(BINARY_NAME) cmd/kubectl-rebalance/main.go
+	go build $(LDFLAGS) -o $(BINARY_NAME) ./cmd/kubectl-rebalance
 
 test:
 	go test -v -race ./...

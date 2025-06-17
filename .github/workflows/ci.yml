@@ -32,7 +32,7 @@ jobs:
       run: go test -v -race ./...
 
     - name: Build
-      run: go build -v ./cmd/kubectl-rebalance/main.go
+      run: go build -v ./cmd/kubectl-rebalance
 
     - name: Test build
       run: ./kubectl-rebalance --help
@@ -53,7 +53,7 @@ jobs:
         go-version: ${{ matrix.go }}
 
     - name: Build
-      run: go build -v -o kubectl-rebalance ./cmd/kubectl-rebalance/main.go
+      run: go build -v -o kubectl-rebalance ./cmd/kubectl-rebalance
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
