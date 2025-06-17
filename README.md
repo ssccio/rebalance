@@ -64,6 +64,9 @@ kubectl krew install rebalance
 ### Basic usage
 
 ```bash
+# Show help (just run without arguments)
+kubectl rebalance
+
 # Evict 10 pods with label 'name=php' from the 3 most loaded nodes
 kubectl rebalance --count 10 --selector name=php --from-nodes 3
 # Dry-run mode to see what would be evicted
